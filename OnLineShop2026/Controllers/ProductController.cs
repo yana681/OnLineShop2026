@@ -6,10 +6,12 @@ namespace OnLineShop2026.Controllers
     public class ProductController : Controller
     {
 
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
             Product pie = new Product("Пирожок", "с котятами", 50);
-            return View(pie);
+            Product cheburec = new Product("Чебурек", "с вишней", 80);
+            if (id == 1) return View(pie);
+            return View(cheburec);
         }
 
         //public IActionResult Index()
