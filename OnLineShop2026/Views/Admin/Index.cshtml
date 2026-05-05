@@ -1,39 +1,35 @@
-﻿@model Cart
+﻿@model List<Product>
 @{
     ViewData["Title"] = "Администратор";
 }
 <main>
     <div class="text-center">
-    <h1 class="display-4">Панель администратора</h1>
-    <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-            <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-            <span class="fs-5 fw-semibold">Меню</span>
-        </a>
-        <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-                    Продукты
-                </button>
-                <div class="collapse show" id="home-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark rounded">Добавить продукт</a></li>
-                        <li><a href="#" class="link-dark rounded">Редактировать</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                    Пользователи
-                </button>
-                <div class="collapse" id="dashboard-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark rounded">Список пользователей</a></li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div>
+    <h1 class="display-4">Список товаров</h1>
+    @await Html.PartialAsync("SideBar")
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Ред</th>
+                </tr>
+            </thead>
+            <tbody>
+                 @foreach(var product in @Model)
+                    {
+                        <tr>
+                            <th scope="row">@product.Id</th>
+                            <td>@product.Name</td>
+                            <td>@product.Cost</td>
+                            <td>
+                            <a asp-controller="admin" asp-action="EditProduct" asp-route-id="@product.Id">ред</a>
+                            </td>
+                        </tr>
+                    }
+            </tbody>
+        </table>
+
 </div>
 </main>
 
