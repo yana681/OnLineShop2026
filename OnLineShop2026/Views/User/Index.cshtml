@@ -1,14 +1,28 @@
-﻿@model User
+﻿@model List<User>
 @{
-    ViewData["Title"] = "Профиль";
+    ViewData["Title"] = "Пользователи";
 }
 
-<div class="card" style="width: 18rem;">
-    <img src="@Model.PhotoPath" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">@Model.Name</h5>
-        <p class="card-text">@Model.Email</p>
-        <a href="/Home/Catalog" class="btn btn-primary">В каталог</a>
-    </div>
-</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Почта</th>
+            <th scope="col">Профиль</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <th scope="row">@i</th>
+                <td>@Model[i].Name</td>
+                <td>@Model[i].Email</td>
+                <td><a href="/User/Profile/@Model[i].Id">Перейти</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
 

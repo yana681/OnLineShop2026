@@ -9,6 +9,7 @@
 
         public User(string name, string email, string photoPath = "/images/ava.jpg")
         {
+            Id = Guid.NewGuid();
             Name = name;
             Email = email;
             PhotoPath = photoPath;
